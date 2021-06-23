@@ -89,7 +89,6 @@
                <li>
                         </c:if>
                 <div class="col">
-                   <%-- <div class="title">${loop.index+1}</div>--%>
                     <div class="title">${institution.name}</div>
                     <div class="subtitle">${institution.description}</div>
                 </div>

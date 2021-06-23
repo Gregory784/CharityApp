@@ -9,7 +9,7 @@ import java.util.Optional;
 
 @Repository
 @AllArgsConstructor
-class JpaInstitutionRepository implements InstitutionService {
+class InstitutionRepositoryImpl implements InstitutionService {
     private final InstitutionRepository institutionRepository;
 
     @Override
