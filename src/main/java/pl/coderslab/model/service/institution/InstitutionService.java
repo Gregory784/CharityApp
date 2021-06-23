@@ -6,7 +6,7 @@ import java.util.List;
 import java.util.Optional;
 
 public interface InstitutionService {
-    List<Institution> getInstitution();
+    List<Institution> getInstitutions();
 
     void createInstitution(Institution institution);
 

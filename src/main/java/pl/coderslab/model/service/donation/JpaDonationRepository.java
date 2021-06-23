@@ -9,7 +9,7 @@ import java.util.Optional;
 
 @Repository
 @AllArgsConstructor
-class DonationRepositoryImpl implements DonationService{
+class JpaDonationRepository implements DonationService{
     private final DonationRepository donationRepository;
     @Override
     public List<Donation> getDonation() {

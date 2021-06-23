@@ -10,7 +10,7 @@ import java.util.Optional;
 
 @Repository
 @AllArgsConstructor
-public class CategoryRepositoryImpl implements CategoryService {
+public class JpaCategoryRepository implements CategoryService {
     private final CategoryRepository categoryRepository;
 
     @Override

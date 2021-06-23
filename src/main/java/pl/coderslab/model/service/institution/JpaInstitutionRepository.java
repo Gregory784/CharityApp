@@ -9,11 +9,11 @@ import java.util.Optional;
 
 @Repository
 @AllArgsConstructor
-class InstitutionRepositoryImpl implements InstitutionService {
+class JpaInstitutionRepository implements InstitutionService {
     private final InstitutionRepository institutionRepository;
 
     @Override
-    public List<Institution> getInstitution() {
+    public List<Institution> getInstitutions() {
         return institutionRepository.findAll();
     }
 
