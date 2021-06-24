@@ -260,7 +260,7 @@
 
             <div class="form-group form-group--buttons">
               <button type="button" class="btn prev-step">Wstecz</button>
-              <button type="submit" class="btn">Potwierdzam</button>
+              <button <c:url value="form-confirmation"/> type="submit" class="btn">Potwierdzam</button>
             </div>
           </div>
         </form>
