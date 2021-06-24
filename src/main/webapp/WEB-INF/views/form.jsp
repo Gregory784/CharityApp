@@ -100,7 +100,7 @@
               <label>
                 <input
                   type="checkbox"
-                  name="categories"
+                  path="categories"
                   value="${category.id}"
                 />
                 <span class="checkbox"></span>
@@ -123,7 +123,7 @@
             <div class="form-group form-group--inline">
               <label>
                 Liczba 60l worków:
-                <input type="number" name="bags" step="1" min="1" />
+                <input type="number" path="quantity" step="1" min="1" />
               </label>
             </div>
 
@@ -142,7 +142,7 @@
             <c:forEach items="${institutions}" var="organization">
             <div class="form-group form-group--checkbox">
               <label>
-                <input type="radio" name="organization" value="${organization.id}" />
+                  <input type="radio" path="institution" value="${organization.id}" />
                 <span class="checkbox radio"></span>
                 <span class="description">
                   <div class="title">${organization.name}</div>
@@ -168,22 +168,22 @@
               <div class="form-section--column">
                 <h4>Adres odbioru</h4>
                 <div class="form-group form-group--inline">
-                  <label> Ulica <input type="text" name="address" /> </label>
+                  <label> Ulica <input type="text" path="street" /> </label>
                 </div>
 
                 <div class="form-group form-group--inline">
-                  <label> Miasto <input type="text" name="city" /> </label>
+                  <label> Miasto <input type="text" path="city" /> </label>
                 </div>
 
                 <div class="form-group form-group--inline">
                   <label>
-                    Kod pocztowy <input type="text" name="postcode" />
+                    Kod pocztowy <input type="text" path="zipCode" />
                   </label>
                 </div>
 
                 <div class="form-group form-group--inline">
                   <label>
-                    Numer telefonu <input type="phone" name="phone" />
+                    Numer telefonu <input type="phone" path="phoneNumber" />
                   </label>
                 </div>
               </div>
@@ -191,17 +191,17 @@
               <div class="form-section--column">
                 <h4>Termin odbioru</h4>
                 <div class="form-group form-group--inline">
-                  <label> Data <input type="date" name="data" /> </label>
+                  <label> Data <input type="date" path="pickUpDate" /> </label>
                 </div>
 
                 <div class="form-group form-group--inline">
-                  <label> Godzina <input type="time" name="time" /> </label>
+                  <label> Godzina <input type="time" path="pickUpTime" /> </label>
                 </div>
 
                 <div class="form-group form-group--inline">
                   <label>
                     Uwagi dla kuriera
-                    <textarea name="more_info" rows="5"></textarea>
+                    <textarea name="pickUpComment" rows="5"></textarea>
                   </label>
                 </div>
               </div>

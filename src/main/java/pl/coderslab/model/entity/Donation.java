@@ -34,5 +34,8 @@ public class Donation {
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
     private LocalTime pickUpTime;
     private String pickUpComment;
+    private int phoneNumber;
+
+    // dodać numer telefonu?
 
 }
