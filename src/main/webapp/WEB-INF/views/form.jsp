@@ -90,29 +90,26 @@
       <div class="form--steps-container">
         <div class="form--steps-counter">Krok <span>1</span>/4</div>
 
-        <form action="form-confirmation.html" method="post">
+        <form:form action="" method="post" modelAttribute="donation">
           <!-- STEP 1: class .active is switching steps -->
           <div data-step="1" class="active">
             <h3>Zaznacz co chcesz oddać:</h3>
 
+            
             <c:forEach items="${categories}" var="category">
-            <div class="form-group form-group--checkbox">
-              <label>
-                <input
-                  type="checkbox"
-                  path="categories"
-                  value="${category.id}"
-                />
-                <span class="checkbox"></span>
-                <span class="description"
-                  >${category.name}</span
-                >
-              </label>
-            </div>
+              <div class="form-group form-group--checkbox">
+                <label>
+                  <form:checkbox path="categories" value="${category.id}"/>
+                  <span class="checkbox"></span>
+                  <span id="category" class="description"> ${category.name} </span>
+                </label>
+              </div>
             </c:forEach>
 
+            <form:errors path="categories" cssStyle="color: red; font-size: 12px" element="div" />
+
             <div class="form-group form-group--buttons">
-              <button type="button" class="btn next-step">Dalej</button>
+              <form:button type="button" id="step1BtnNext" class="btn next-step">Dalej</form:button>
             </div>
           </div>
 
@@ -123,13 +120,14 @@
             <div class="form-group form-group--inline">
               <label>
                 Liczba 60l worków:
-                <input type="number" path="quantity" step="1" min="1" />
+                <form:input id="quantity" type="number" name="quantity" step="1" min="1" path="quantity"/>
               </label>
+              <form:errors path="quantity" cssStyle="color: red; font-size: 12px" element="div" />
             </div>
 
             <div class="form-group form-group--buttons">
-              <button type="button" class="btn prev-step">Wstecz</button>
-              <button type="button" class="btn next-step">Dalej</button>
+              <form:button type="button" id="step2BtnPrev" class="btn prev-step">Wstecz</form:button>
+              <form:button type="button" id="step2BtnNext" class="btn next-step">Dalej</form:button>
             </div>
           </div>
 
@@ -139,24 +137,22 @@
           <div data-step="3">
             <h3>Wybierz organizacje, której chcesz pomóc:</h3>
 
-            <c:forEach items="${institutions}" var="organization">
+            <c:forEach items="${institutions}" var="institution">
             <div class="form-group form-group--checkbox">
               <label>
-                  <input type="radio" path="institution" value="${organization.id}" />
+                <form:radiobutton path="institution" value="${institution.id}"/>
                 <span class="checkbox radio"></span>
                 <span class="description">
-                  <div class="title">${organization.name}</div>
-                  <div class="subtitle">
-                    ${organization.description}
-                  </div>
+                  <div id="institution" class="title">${institution.name}</div>
+                  <div class="subtitle">${institution.description}</div>
                 </span>
               </label>
             </div>
             </c:forEach>
 
             <div class="form-group form-group--buttons">
-              <button type="button" class="btn prev-step">Wstecz</button>
-              <button type="button" class="btn next-step">Dalej</button>
+              <form:button type="button" id="step3BtnPrev" class="btn prev-step">Wstecz</form:button>
+              <form:button type="button" id="step3BtnNext" class="btn next-step">Dalej</form:button>
             </div>
           </div>
 
@@ -168,47 +164,61 @@
               <div class="form-section--column">
                 <h4>Adres odbioru</h4>
                 <div class="form-group form-group--inline">
-                  <label> Ulica <input type="text" path="street" /> </label>
+                  <label> Ulica <form:input id="street" path="street" type="text" name="street" /> </label>
+                  <form:errors path="street" cssStyle="color: red; font-size: 12px" element="div" />
                 </div>
 
                 <div class="form-group form-group--inline">
-                  <label> Miasto <input type="text" path="city" /> </label>
-                </div>
-
-                <div class="form-group form-group--inline">
-                  <label>
-                    Kod pocztowy <input type="text" path="zipCode" />
-                  </label>
+                  <label> Miasto <form:input id="city" path="city" type="text" name="city" /> </label>
+                  <form:errors path="city" cssStyle="color: red; font-size: 12px" element="div" />
                 </div>
 
                 <div class="form-group form-group--inline">
                   <label>
-                    Numer telefonu <input type="phone" path="phoneNumber" />
+                    Kod pocztowy
+                    <form:input id="zipCode" path="zipCode" type="text" name="zipCode"
+                                placeholder="XX(-)XXX" maxlength="6"
+                                oninput="this.value = this.value.replace(/[^-\ \d]/g, '').replace(/(\..*?)\..*/g, '$1');"
+                                onchange="checkZipCodePattern(this);"/>
                   </label>
+                  <form:errors path="zipCode" cssStyle="color: red; font-size: 12px" element="div" />
+                </div>
+
+                <div class="form-group form-group--inline">
+                  <label>
+                    Numer telefonu
+                    <form:input id="phoneNumber" path="phoneNumber" type="tel" name="phoneNumber"
+                                oninput="this.value = this.value.replace(/[^+\ 0-9]/g, '').replace(/(\..*?)\..*/g, '$1');"
+                                onchange="checkPhoneNrPattern(this);" maxlength="15" />
+                  </label>
+                  <form:errors path="phoneNumber" cssStyle="color: red; font-size: 12px" element="div" />
                 </div>
               </div>
 
               <div class="form-section--column">
                 <h4>Termin odbioru</h4>
                 <div class="form-group form-group--inline">
-                  <label> Data <input type="date" path="pickUpDate" /> </label>
+                  <label> Data <form:input id="pickUpDate" path="pickUpDate" type="date" name="pickUpDate" onchange="checkDate()" /> </label>
+                  <form:errors path="pickUpDate" cssStyle="color: red; font-size: 12px" element="div" />
                 </div>
 
                 <div class="form-group form-group--inline">
-                  <label> Godzina <input type="time" path="pickUpTime" /> </label>
+                  <label> Godzina <form:input id="pickUpTime" path="pickUpTime" type="time" name="pickUpTime" onchange="checkTime()" /> </label>
+                  <form:errors path="pickUpTime" cssStyle="color: red; font-size: 12px" element="div" />
                 </div>
 
                 <div class="form-group form-group--inline">
                   <label>
                     Uwagi dla kuriera
-                    <textarea name="pickUpComment" rows="5"></textarea>
+                    <form:textarea id="pickUpComment" path="pickUpComment" name="pickUpComment" rows="5"></form:textarea>
+                    <form:errors path="pickUpComment" cssStyle="color: red; font-size: 12px" element="div" />
                   </label>
                 </div>
               </div>
             </div>
             <div class="form-group form-group--buttons">
-              <button type="button" class="btn prev-step">Wstecz</button>
-              <button type="button" class="btn next-step">Dalej</button>
+              <form:button type="button" id="step4BtnPrev" class="btn prev-step">Wstecz</form:button>
+              <form:button type="button" id="step4BtnNext" class="btn next-step">Dalej</form:button>
             </div>
           </div>
 
@@ -222,16 +232,15 @@
                 <ul>
                   <li>
                     <span class="icon icon-bag"></span>
-                    <span class="summary--text"
-                      >4 worki ubrań w dobrym stanie dla dzieci</span
-                    >
+                    <span class="summary--text">
+                                    Ilość: <span id="summQuantity"></span>, zawartość:
+                                    <span id="summCategories"></span></span>
                   </li>
 
                   <li>
                     <span class="icon icon-hand"></span>
-                    <span class="summary--text"
-                      >Dla fundacji "Mam marzenie" w Warszawie</span
-                    >
+                    <span class="summary--text">Dla fundacji:
+                                    <span id="summInstitutionName"></span></span>
                   </li>
                 </ul>
               </div>
@@ -240,34 +249,36 @@
                 <div class="form-section--column">
                   <h4>Adres odbioru:</h4>
                   <ul>
-                    <li>Prosta 51</li>
-                    <li>Warszawa</li>
-                    <li>99-098</li>
-                    <li>123 456 789</li>
+                    <li id="summPickupStreet"></li>
+                    <li id="summPickupCity"></li>
+                    <li id="summPickupZipCode"></li>
+                    <li id="summPhone"></li>
                   </ul>
                 </div>
 
                 <div class="form-section--column">
                   <h4>Termin odbioru:</h4>
                   <ul>
-                    <li>13/12/2018</li>
-                    <li>15:40</li>
-                    <li>Brak uwag</li>
+                    <li id="summPickupDate"></li>
+                    <li id="summPickupTime"></li>
+                    <li id="summPickUpComment"></li>
                   </ul>
                 </div>
               </div>
             </div>
 
             <div class="form-group form-group--buttons">
-              <button type="button" class="btn prev-step">Wstecz</button>
-              <button <c:url value="form-confirmation"/> type="submit" class="btn">Potwierdzam</button>
+              <form:button type="button" class="btn prev-step">Wstecz</form:button>
+              <button type="submit" class="btn">Potwierdzam</button>
+              <form:input type="button" value="Potwierdzam" onclick="this.form.submit()" path=""/>
+              <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
             </div>
           </div>
-        </form>
+        </form:form>
       </div>
     </section>
 
     <%@include file="footer.jsp"%>
-    <script src="js/app.js"></script>
+    <script src="<c:url value="resources/js/form.js"/>"></script>
   </body>
 </html>
