@@ -9,7 +9,7 @@ import java.util.Optional;
 
 @Repository
 @AllArgsConstructor
-class JpaInstitutionRepository implements InstitutionService {
+class InstitutionImplRepository implements InstitutionService {
     private final InstitutionRepository institutionRepository;
 
     @Override
@@ -23,7 +23,7 @@ class JpaInstitutionRepository implements InstitutionService {
     }
 
     @Override
-    public Optional<Institution> getInstitutionByID(final double id) {
+    public Optional<Institution> getInstitutionByID(final long id) {
         return this.institutionRepository.findById(id);
     }
 
@@ -35,7 +35,7 @@ class JpaInstitutionRepository implements InstitutionService {
     }
 
     @Override
-    public void deleteInstitutionByID(final double id) {
+    public void deleteInstitutionByID(final long id) {
         institutionRepository.deleteById(id);
     }
 }

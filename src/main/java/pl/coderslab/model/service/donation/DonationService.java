@@ -10,9 +10,9 @@ public interface DonationService {
 
     void createDonation(Donation donation);
 
-    Optional<Donation> getDonationByID(double id);
+    Optional<Donation> getDonationByID(long id);
 
     void updateDonation(Donation donation);
 
-    void deleteDonationByID(double id);
+    void deleteDonationByID(long id);
 }

@@ -1,6 +1,5 @@
 package pl.coderslab.controller;
 
-import com.fasterxml.jackson.databind.deser.std.StringArrayDeserializer;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -33,7 +32,7 @@ public class DonationController {
     }
 
     @PostMapping("/adddonation")
-    public String addDonationFormPost(BindingResult bindingResult, Model model, @Valid Donation donation){
+    public String addDonationFormPost(@ModelAttribute ("donation") @Valid Donation donation,BindingResult bindingResult, Model model){
         if(bindingResult.hasErrors()){
             return "form";
         }

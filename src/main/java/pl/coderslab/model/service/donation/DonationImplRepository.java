@@ -9,7 +9,7 @@ import java.util.Optional;
 
 @Repository
 @AllArgsConstructor
-class JpaDonationRepository implements DonationService{
+class DonationImplRepository implements DonationService{
     private final DonationRepository donationRepository;
     @Override
     public List<Donation> getDonation() {
@@ -22,7 +22,7 @@ class JpaDonationRepository implements DonationService{
     }
 
     @Override
-    public Optional<Donation> getDonationByID(final double id) {
+    public Optional<Donation> getDonationByID(final long id) {
         return this.donationRepository.findById(id);
     }
 
@@ -34,7 +34,7 @@ class JpaDonationRepository implements DonationService{
     }
 
     @Override
-    public void deleteDonationByID(final double id) {
+    public void deleteDonationByID(final long id) {
         donationRepository.deleteById(id);
     }
 }

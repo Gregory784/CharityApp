@@ -10,7 +10,7 @@ import java.util.Optional;
 
 @Repository
 @AllArgsConstructor
-public class JpaCategoryRepository implements CategoryService {
+public class CategoryImplRepository implements CategoryService {
     private final CategoryRepository categoryRepository;
 
     @Override
@@ -24,7 +24,7 @@ public class JpaCategoryRepository implements CategoryService {
     }
 
     @Override
-    public Optional<Category> getCategoryByID(final double id) {
+    public Optional<Category> getCategoryByID(final long id) {
         return this.categoryRepository.findById(id);
     }
 
@@ -36,7 +36,7 @@ public class JpaCategoryRepository implements CategoryService {
     }
 
     @Override
-    public void deleteCategoryByID(final double id) {
+    public void deleteCategoryByID(final long id) {
         categoryRepository.deleteById(id);
     }
 }

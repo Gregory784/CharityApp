@@ -10,10 +10,10 @@ public interface InstitutionService {
 
     void createInstitution(Institution institution);
 
-    Optional<Institution> getInstitutionByID(double id);
+    Optional<Institution> getInstitutionByID(long id);
 
     void updateInstitution(Institution institution);
 
-    void deleteInstitutionByID(double id);
+    void deleteInstitutionByID(long id);
 
 }

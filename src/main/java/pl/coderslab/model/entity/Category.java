@@ -12,7 +12,7 @@ import javax.validation.constraints.NotBlank;
 public class Category {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private double id;
+    private long id;
     @NotBlank
     private String name;
 

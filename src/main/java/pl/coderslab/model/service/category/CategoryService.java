@@ -10,10 +10,10 @@ public interface CategoryService {
 
     void createCategory(Category category);
 
-    Optional<Category> getCategoryByID(double id);
+    Optional<Category> getCategoryByID(long id);
 
     void updateCategory(Category category);
 
-    void deleteCategoryByID(double id);
+    void deleteCategoryByID(long id);
 
 }

@@ -16,7 +16,7 @@ import java.util.List;
 public class Donation {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private double id;
+    private long id;
     @Min(1)
     private int quantity;
 
@@ -29,9 +29,9 @@ public class Donation {
     private String street;
     private String city;
     private String zipCode;
-    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate pickUpDate;
-    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
+    @DateTimeFormat(pattern = "H:mm")
     private LocalTime pickUpTime;
     private String pickUpComment;
     private int phoneNumber;
