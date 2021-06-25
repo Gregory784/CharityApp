@@ -36,6 +36,5 @@ public class Donation {
     private String pickUpComment;
     private int phoneNumber;
 
-    // dodać numer telefonu?
 
 }

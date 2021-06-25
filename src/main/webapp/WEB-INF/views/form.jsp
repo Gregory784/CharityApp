@@ -104,11 +104,17 @@
                   <span id="category" class="description"> ${category.name} </span>
                 </label>
               </div>
+             <%-- <div class="form-group form-group--checkbox"> <label>
+                <form:checkbox path="categories" value="${category.id}"/>
+                <input type="checkbox" name="categories" value="clothes-useless" />
+                <span class="checkbox"></span>
+                <span class="description">${category.name}</span> </label> </div>--%>
             </c:forEach>
 
             <form:errors path="categories" cssStyle="color: red; font-size: 12px" element="div" />
 
             <div class="form-group form-group--buttons">
+
               <form:button type="button" id="step1BtnNext" class="btn next-step">Dalej</form:button>
             </div>
           </div>
@@ -267,10 +273,9 @@
               </div>
             </div>
 
-            <div class="form-group form-group--buttons">
+            <button class="form-group form-group--buttons">
               <form:button type="button" class="btn prev-step">Wstecz</form:button>
-              <button type="submit" class="btn">Potwierdzam</button>
-              <form:input type="button" value="Potwierdzam" onclick="this.form.submit()" path=""/>
+              <form:input type="button" value="Potwierdzam" class="btn" onclick="this.form.submit()" path=""/>
               <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
             </div>
           </div>
@@ -279,6 +284,6 @@
     </section>
 
     <%@include file="footer.jsp"%>
-    <script src="<c:url value="resources/js/form.js"/>"></script>
+    <script src="<c:url value="resources/js/formservice.js"/>"></script>
   </body>
 </html>
