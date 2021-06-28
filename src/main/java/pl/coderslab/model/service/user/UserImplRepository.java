@@ -6,6 +6,7 @@ import pl.coderslab.model.entity.User;
 
 import java.util.List;
 import java.util.Optional;
+import org.mindrot.jbcrypt.BCrypt;
 
 
 @Repository
@@ -20,6 +21,7 @@ class UserImplRepository implements UserService {
 
     @Override
     public void createUser(final User user) {
+        user.setPassword(hashPassword(user.getPassword()));
         userRepository.save(user);
     }
 
@@ -43,5 +45,9 @@ class UserImplRepository implements UserService {
     @Override
     public boolean existsByEmail(String email) {
         return userRepository.existsByEmail(email);
+    }
+
+    public String hashPassword(String password) {
+        return BCrypt.hashpw(password, BCrypt.gensalt());
     }
 }

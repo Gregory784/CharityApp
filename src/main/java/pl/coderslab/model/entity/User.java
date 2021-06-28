@@ -32,7 +32,7 @@ public class User {
 
     @NotBlank(message = "Password must have minimum eight characters, at least one letter and one number")
     @Column(nullable = false)
-    @Pattern(regexp = "^(?=.*[A-Za-z])(?=.*\\d)[A-Za-z\\d]{8,}$")
+    //@Pattern(regexp = "^(?=.*[A-Za-z])(?=.*\\d)[A-Za-z\\d]{8,}$")
     private String password;
 
     @Transient
