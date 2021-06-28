@@ -9,18 +9,19 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <title>Document</title>
+    <title>Add user</title>
     <link rel="stylesheet" href="<c:url value="resources/css/style.css"/>"/>
   </head>
   <body>
   <%@include file="header.jsp"%>
     <section class="login-page">
       <h2>Załóż konto</h2>
-      <form:form modelAttribute="user" method="post">
+      <form:form action="" modelAttribute="user" method="post">
         <div class="form-group">
           <form:input path="name" placeholder="Imię" name="name"/>
           <form:errors path="name" cssStyle="color: red; font-size: 12px" element="div" />
-        </div><div class="form-group">
+        </div>
+        <div class="form-group">
           <form:input path="email" placeholder="E-mail" name="email"/>
           <form:errors path="email" cssStyle="color: red; font-size: 12px" element="div" />
         </div>
@@ -40,4 +41,5 @@
     </section>
     <%@include file="footer.jsp"%>
   </body>
+  <script src="<c:url value="resources/js/form.js"/>"></script>
 </html>
