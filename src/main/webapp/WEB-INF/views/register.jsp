@@ -18,18 +18,23 @@
       <h2>Załóż konto</h2>
       <form:form modelAttribute="user" method="post">
         <div class="form-group">
-      <form:input path="email" placeholder="E-mail"/>
+          <form:input path="name" placeholder="Imię" name="name"/>
+          <form:errors path="name" cssStyle="color: red; font-size: 12px" element="div" />
+        </div><div class="form-group">
+          <form:input path="email" placeholder="E-mail" name="email"/>
+          <form:errors path="email" cssStyle="color: red; font-size: 12px" element="div" />
         </div>
         <div class="form-group">
-      <form:input path="password" placeholder="Hasło"/>
+      <form:input path="password" placeholder="Hasło" name="password"/>
         </div>
         <div class="form-group">
-      <form:input path="password2" placeholder="Powtórz hasło"/>
+      <form:input path="password2" placeholder="Powtórz hasło" name="password2"/>
         </div>
 
         <div class="form-group form-group--buttons">
           <a href="login.html" class="btn btn--without-border">Zaloguj się</a>
           <button class="btn" type="submit">Załóż konto</button>
+          <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
         </div>
       </form:form>
     </section>

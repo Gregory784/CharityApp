@@ -25,8 +25,6 @@ public class UserController {
         if(!user.getPassword().equals(user.getPassword2())){
             bindingResult.rejectValue("password2", "error.user", "Password are different");
         }
-
-
         return "login";
     }
 }
