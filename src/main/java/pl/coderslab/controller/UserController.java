@@ -24,18 +24,22 @@ public class UserController {
     }
 
     @PostMapping("/adduser")
-    public String addUserPost(@ModelAttribute("user") @Valid User user, BindingResult bindingResult) {
+    public String addUserPost(@ModelAttribute("user") @Valid User user, BindingResult bindingResult, Model model) {
         //conditions
+        boolean isNewUser = userService.existsByEmail(user.getEmail());
         if (!user.getPassword().equals(user.getPassword2())) {
+            bindingResult.rejectValue("password", "error.user","Password are different");
             bindingResult.rejectValue("password2", "error.user", "Password are different");
-            bindingResult.rejectValue("password", "error.user", "Password are different");
             user.setPassword("");
             user.setPassword2("");
+        }
+        if(isNewUser){
+            bindingResult.rejectValue("email", "error.user", "User with this email is already exist");
         }
         if (bindingResult.hasErrors()) {
             return "register";
         }
             userService.createUser(user);
-            return "index";
+            return "redirect:";
     }
 }

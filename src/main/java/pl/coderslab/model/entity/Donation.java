@@ -6,6 +6,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import javax.validation.constraints.Min;
+import javax.validation.constraints.NotBlank;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.List;
@@ -26,14 +27,18 @@ public class Donation {
     @OneToOne
     private Institution institution;
 
+    @NotBlank(message = "cannot be empty")
     private String street;
+    @NotBlank(message = "cannot be empty")
     private String city;
+    @NotBlank(message = "cannot be empty")
     private String zipCode;
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate pickUpDate;
     @DateTimeFormat(pattern = "H:mm")
     private LocalTime pickUpTime;
     private String pickUpComment;
+    @NotBlank(message = "cannot be empty")
     private int phoneNumber;
 
 

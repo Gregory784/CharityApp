@@ -9,7 +9,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <title>Add user</title>
+    <title>Add new user</title>
     <link rel="stylesheet" href="<c:url value="resources/css/style.css"/>"/>
   </head>
   <body>
@@ -22,14 +22,20 @@
           <form:errors path="name" cssStyle="color: red; font-size: 12px" element="div" />
         </div>
         <div class="form-group">
-          <form:input path="email" placeholder="E-mail" name="email"/>
+          <form:input path="lastName" placeholder="Nazwisko" />
+          <form:errors path="lastName" cssStyle="color: red; font-size: 12px" element="div" />
+        </div>
+        <div class="form-group">
+          <form:input path="email" type="email" placeholder="E-mail" name="email"/>
           <form:errors path="email" cssStyle="color: red; font-size: 12px" element="div" />
         </div>
         <div class="form-group">
-      <form:input path="password" placeholder="Hasło" name="password"/>
+           <form:input type="password" path="password" placeholder="Hasło" name="password"/>
+           <form:errors path="password" cssStyle="color: red; font-size: 12px" element="div" />
         </div>
         <div class="form-group">
-      <form:input path="password2" placeholder="Powtórz hasło" name="password2"/>
+           <form:input type="password" path="password2" placeholder="Powtórz hasło" name="password2"/>
+           <form:errors path="password2" cssStyle="color: red; font-size: 12px" element="div" />
         </div>
 
         <div class="form-group form-group--buttons">

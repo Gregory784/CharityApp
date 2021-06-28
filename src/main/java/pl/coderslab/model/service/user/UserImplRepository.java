@@ -39,4 +39,9 @@ class UserImplRepository implements UserService {
     public void deleteUserByID(final long id) {
         userRepository.deleteById(id);
     }
+
+    @Override
+    public boolean existsByEmail(String email) {
+        return userRepository.existsByEmail(email);
+    }
 }

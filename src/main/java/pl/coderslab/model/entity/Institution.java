@@ -12,8 +12,8 @@ public class Institution {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
-    @NotBlank
+    @NotBlank(message = "cannot be empty")
     private String name;
-    @NotBlank
+    @NotBlank(message = "cannot be empty")
     private String description;
 }
