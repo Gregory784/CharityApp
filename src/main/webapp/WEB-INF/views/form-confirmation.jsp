@@ -27,7 +27,7 @@
         </ul>--%>
           <ul class="nav--actions">
             <li><a href="" class="btn btn--small btn--without-border">Zaloguj</a></li>
-            <li><a href="#" class="btn btn--small btn--highlighted">Załóż konto</a></li>
+            <li><a href="<c:url value="/adduser"/>" class="btn btn--small btn--highlighted">Załóż konto</a></li>
           </ul>
           <ul>
             <li><a href="<c:url value="/#"/>" class="btn btn--without-border active">Start</a></li>

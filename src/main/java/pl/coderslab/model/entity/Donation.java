@@ -7,6 +7,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 import javax.persistence.*;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.List;
@@ -21,7 +22,7 @@ public class Donation {
     @Min(1)
     private int quantity;
 
-    @OneToMany
+    @ManyToMany
     private List<Category> categories;
 
     @OneToOne
@@ -38,7 +39,7 @@ public class Donation {
     @DateTimeFormat(pattern = "H:mm")
     private LocalTime pickUpTime;
     private String pickUpComment;
-    @NotBlank(message = "cannot be empty")
+    @NotNull(message = "cannot be empty")
     private int phoneNumber;
 
 

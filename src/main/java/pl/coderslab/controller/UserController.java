@@ -7,6 +7,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import pl.coderslab.dto.UserDto;
 import pl.coderslab.model.entity.User;
 import pl.coderslab.model.service.user.UserService;
 
@@ -19,19 +20,19 @@ public class UserController {
 
     @GetMapping("/adduser")
     public String addUserGet(Model model) {
-        model.addAttribute("user", new User());
+        model.addAttribute("user", new UserDto());
         return "register";
     }
 
     @PostMapping("/adduser")
-    public String addUserPost(@ModelAttribute("user") @Valid User user, BindingResult bindingResult, Model model) {
+    public String addUserPost(@ModelAttribute("user") @Valid UserDto userDto, BindingResult bindingResult, Model model) {
         //conditions
-        boolean isNewUser = userService.existsByEmail(user.getEmail());
-        if (!user.getPassword().equals(user.getPassword2())) {
+        boolean isNewUser = userService.existsByEmail(userDto.getEmail());
+        if (!userDto.getPassword().equals(userDto.getPassword2())) {
             bindingResult.rejectValue("password", "error.user","Password are different");
             bindingResult.rejectValue("password2", "error.user", "Password are different");
-            user.setPassword("");
-            user.setPassword2("");
+            userDto.setPassword("");
+            userDto.setPassword2("");
         }
         if(isNewUser){
             bindingResult.rejectValue("email", "error.user", "User with this email is already exist");
@@ -39,7 +40,18 @@ public class UserController {
         if (bindingResult.hasErrors()) {
             return "register";
         }
-            userService.createUser(user);
+        User u = new User();
+        u.setName(userDto.getName());
+        u.setLastName(userDto.getLastName());
+        u.setEmail(userDto.getEmail());
+        u.setPassword1(userDto.getPassword());
+
+        userService.createUser(u);
             return "redirect:";
+    }
+
+    @GetMapping("/login")
+    public String login(){
+        return "login";
     }
 }
