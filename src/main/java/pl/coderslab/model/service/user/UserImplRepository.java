@@ -21,7 +21,6 @@ class UserImplRepository implements UserService {
 
     @Override
     public void createUser(final User user) {
-        //user.setPassword(hashPassword(user.getPassword()));
         userRepository.save(user);
     }
 
@@ -47,7 +46,9 @@ class UserImplRepository implements UserService {
         return userRepository.existsByEmail(email);
     }
 
-    public String hashPassword(String password) {
-        return BCrypt.hashpw(password, BCrypt.gensalt());
+    @Override
+    public User findByEmail(final String email) {
+        return findByEmail(email);
     }
+
 }

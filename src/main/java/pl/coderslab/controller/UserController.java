@@ -51,6 +51,7 @@ public class UserController {
             return "redirect:";
     }
     public String hashPassword(String password) {
+
         return BCrypt.hashpw(password, BCrypt.gensalt());
     }
 

@@ -17,4 +17,6 @@ public interface UserService {
     void deleteUserByID(long id);
 
     boolean existsByEmail(String email);
+
+    User findByEmail(String email);
 }

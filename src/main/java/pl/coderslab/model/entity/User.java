@@ -4,6 +4,7 @@ package pl.coderslab.model.entity;
 import lombok.Data;
 
 import javax.persistence.*;
+import java.util.Set;
 
 @Entity
 @Table (name = "users")
@@ -17,5 +18,8 @@ public class User {
     private String lastName;
     private String email;
     private String password;
+
+    @ManyToMany
+    private Set<Role> roles;
 
 }
