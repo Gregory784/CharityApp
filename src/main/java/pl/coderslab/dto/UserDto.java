@@ -1,7 +1,6 @@
 package pl.coderslab.dto;
 
 import lombok.Data;
-import lombok.NoArgsConstructor;
 import org.springframework.stereotype.Component;
 
 import javax.persistence.Column;

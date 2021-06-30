@@ -1,6 +1,7 @@
 package pl.coderslab.controller;
 
 import lombok.AllArgsConstructor;
+import org.mindrot.jbcrypt.BCrypt;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -44,10 +45,13 @@ public class UserController {
         u.setName(userDto.getName());
         u.setLastName(userDto.getLastName());
         u.setEmail(userDto.getEmail());
-        u.setPassword1(userDto.getPassword());
+        u.setPassword(hashPassword(userDto.getPassword()));
 
         userService.createUser(u);
             return "redirect:";
+    }
+    public String hashPassword(String password) {
+        return BCrypt.hashpw(password, BCrypt.gensalt());
     }
 
     @GetMapping("/login")

@@ -21,7 +21,7 @@ class UserImplRepository implements UserService {
 
     @Override
     public void createUser(final User user) {
-        user.setPassword(hashPassword(user.getPassword()));
+        //user.setPassword(hashPassword(user.getPassword()));
         userRepository.save(user);
     }
 
