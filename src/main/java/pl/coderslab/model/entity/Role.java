@@ -1,14 +1,11 @@
 package pl.coderslab.model.entity;
 
 
-import lombok.Data;
-
 import javax.persistence.*;
 import java.util.Set;
 
 @Entity
-@Table(name = "role")
-@Data
+@Table(name = "roles")
 public class Role {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -19,4 +16,11 @@ public class Role {
     @ManyToMany(mappedBy = "roles")
     private Set<User> users;
 
+    public Long getId() {
+        return id;
+    }
+
+    public String getName() {
+        return name;
+    }
 }

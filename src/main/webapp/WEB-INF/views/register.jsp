@@ -39,14 +39,18 @@
           <form:input path="lastName" placeholder="Nazwisko" />
           <form:errors path="lastName" cssStyle="color: red; font-size: 12px" element="div" />
         </div>
+        <spring:bind path="email">
         <div class="form-group">
           <form:input path="email" type="email" placeholder="E-mail" name="email"/>
           <form:errors path="email" cssStyle="color: red; font-size: 12px" element="div" />
         </div>
+        </spring:bind>
+        <spring:bind path="password">
         <div class="form-group">
           <form:input type="password" path="password" placeholder="Hasło" name="password"/>
           <form:errors path="password" cssStyle="color: red; font-size: 12px" element="div" />
         </div>
+        </spring:bind>
         <div class="form-group">
           <form:input type="password" path="password2" placeholder="Powtórz hasło" name="password2"/>
           <form:errors path="password2" cssStyle="color: red; font-size: 12px" element="div" />

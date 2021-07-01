@@ -1,7 +1,6 @@
 package pl.coderslab.controller;
 
 import lombok.AllArgsConstructor;
-import org.mindrot.jbcrypt.BCrypt;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -10,6 +9,9 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import pl.coderslab.dto.UserDto;
 import pl.coderslab.model.entity.User;
+import pl.coderslab.model.service.SecurityService;
+import pl.coderslab.model.service.UserValidator;
+import pl.coderslab.model.service.role.RoleRepository;
 import pl.coderslab.model.service.user.UserService;
 
 import javax.validation.Valid;
@@ -18,6 +20,9 @@ import javax.validation.Valid;
 @AllArgsConstructor
 public class UserController {
     private final UserService userService;
+    private final SecurityService securityService;
+    private final UserValidator userValidator;
+    private final RoleRepository roleRepository;
 
     @GetMapping("/adduser")
     public String addUserGet(Model model) {
@@ -27,6 +32,8 @@ public class UserController {
 
     @PostMapping("/adduser")
     public String addUserPost(@ModelAttribute("user") @Valid UserDto userDto, BindingResult bindingResult, Model model) {
+
+        //userValidator.validate(userDto, bindingResult);
         //conditions
         boolean isNewUser = userService.existsByEmail(userDto.getEmail());
         if (!userDto.getPassword().equals(userDto.getPassword2())) {
@@ -45,18 +52,23 @@ public class UserController {
         u.setName(userDto.getName());
         u.setLastName(userDto.getLastName());
         u.setEmail(userDto.getEmail());
-        u.setPassword(hashPassword(userDto.getPassword()));
+        u.setPassword(userDto.getPassword());
+        u.addRole(roleRepository.getOne(2L));
 
         userService.createUser(u);
-            return "redirect:";
-    }
-    public String hashPassword(String password) {
-
-        return BCrypt.hashpw(password, BCrypt.gensalt());
+        securityService.autoLogin(u.getEmail(), u.getPassword());
+            return "redirect:/user";
     }
 
     @GetMapping("/login")
-    public String login(){
+    public String login(Model model, String error, String logout){
+        if (error != null) {
+            model.addAttribute("error", "Your username and password is invalid.");
+        }
+        if (logout != null)
+            model.addAttribute("message", "You have been logged out successfully.");
+
         return "login";
     }
+
 }
