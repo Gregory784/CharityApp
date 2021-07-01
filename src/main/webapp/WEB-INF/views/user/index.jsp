@@ -17,11 +17,11 @@
     <nav class="container container--70">
         <ul class="nav--actions">
             <li class="logged-user">
-                Witaj drogi gościu :)
+                <span style="color: green"> Witaj ${user.name} w Naszym Serwisie :)</span>
                   <ul class="dropdown">
                     <li><a href="#">Profil</a></li>
                     <li><a href="#">Moje zbiórki</a></li>
-                    <li><a href="#">Wyloguj</a></li>
+                    <li><a href="<c:url value="/logout"/>">Wyloguj</a></li>
                   </ul>
             </li>
         </ul>
