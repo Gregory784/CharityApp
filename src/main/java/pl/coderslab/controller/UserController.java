@@ -1,12 +1,14 @@
 package pl.coderslab.controller;
 
 import lombok.AllArgsConstructor;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import pl.coderslab.dto.UserDto;
 import pl.coderslab.model.entity.User;
 import pl.coderslab.model.service.SecurityService;
@@ -69,6 +71,12 @@ public class UserController {
             model.addAttribute("message", "You have been logged out successfully.");
 
         return "login";
+    }
+
+    @GetMapping("/admin")
+    @ResponseBody
+    public String adminpanel(Authentication authentication, Model model){
+        return "<h2> Tu jest panel admina </h2>" ;
     }
 
 }

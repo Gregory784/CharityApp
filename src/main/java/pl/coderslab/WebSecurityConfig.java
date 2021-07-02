@@ -28,20 +28,28 @@ public class WebSecurityConfig  extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http
                 .authorizeRequests()
+                    .antMatchers("/user").hasAuthority("USER")
+                    .antMatchers("/admin").hasAuthority("ADMIN")
                     .antMatchers("/resources/**", "/", "/adduser", "/adddonation").permitAll()
-                    .anyRequest().authenticated()
+                .anyRequest().authenticated()
                 .and()
+
                         .formLogin()
                         .loginPage("/login")
                         .usernameParameter("email")
                         .defaultSuccessUrl("/user")
-                        .permitAll()
+                        .failureForwardUrl("/login")
                         .failureUrl("/login?error")
+                        .permitAll()
+
                 .and()
+
                     .logout()
                     .logoutUrl("/user/logout")
                     .logoutSuccessUrl("/")
-                  .permitAll();
+
+                .and().exceptionHandling()
+                    .accessDeniedPage("/403");
     }
 
     @Bean

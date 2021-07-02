@@ -18,6 +18,8 @@ public class SecurityServiceImpl implements SecurityService{
     private static final Logger logger = LoggerFactory.getLogger(SecurityServiceImpl.class);
 
 
+
+    // może tu trzeba użyć CharityUserDetails?
     @Override
     public String findLoggedInEmail() {
         Object userDetails = SecurityContextHolder.getContext().getAuthentication().getDetails();
