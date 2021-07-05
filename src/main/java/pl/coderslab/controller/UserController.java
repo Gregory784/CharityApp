@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import pl.coderslab.dto.UserDto;
 import pl.coderslab.model.entity.User;
 import pl.coderslab.model.service.SecurityService;
-import pl.coderslab.model.service.UserValidator;
 import pl.coderslab.model.service.role.RoleRepository;
 import pl.coderslab.model.service.user.UserService;
 
@@ -23,7 +22,6 @@ import javax.validation.Valid;
 public class UserController {
     private final UserService userService;
     private final SecurityService securityService;
-    private final UserValidator userValidator;
     private final RoleRepository roleRepository;
 
     @GetMapping("/adduser")
@@ -35,7 +33,6 @@ public class UserController {
     @PostMapping("/adduser")
     public String addUserPost(@ModelAttribute("user") @Valid UserDto userDto, BindingResult bindingResult, Model model) {
 
-        //userValidator.validate(userDto, bindingResult);
         //conditions
         boolean isNewUser = userService.existsByEmail(userDto.getEmail());
         if (!userDto.getPassword().equals(userDto.getPassword2())) {
@@ -73,9 +70,10 @@ public class UserController {
         return "login";
     }
 
-    @GetMapping("/admin")
+    @GetMapping("/admin") //TODO - admin panel CRUD Category, Institution, Role etc.
     @ResponseBody
     public String adminpanel(Authentication authentication, Model model){
+
         return "<h2> Tu jest panel admina </h2>" ;
     }
 

@@ -20,16 +20,6 @@ public class UserDetailsServiceImpl implements UserDetailsService {
     @Autowired
     private UserService userService;
 
- /*   @Override
-    public UserDetails loadUserByUsername(final String email)
-            throws UsernameNotFoundException {
-        User user = userService.findByEmail(email);
-        if (user == null){
-            throw new UsernameNotFoundException("Could not find user");
-        }
-        return new CharityUserDetails(user);
-    }*/
-
     @Override
     @Transactional(readOnly = true)
     public UserDetails loadUserByUsername(String email) {
@@ -40,7 +30,6 @@ public class UserDetailsServiceImpl implements UserDetailsService {
         for (Role role : user.getRoles()){
             grantedAuthorities.add(new SimpleGrantedAuthority(role.getName()));
         }
-           // return new CharityUserDetails(user);
        return new org.springframework.security.core.userdetails.User(user.getEmail(), user.getPassword(), grantedAuthorities);
     }
 
