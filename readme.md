@@ -11,7 +11,7 @@ Hibernate
 
 # Usage
 
-Enter the vehicle with its basic data and last service activities and easily manage them.
+Select items, fill in the form, order a courier and give the gifts to a trusted foundation.
 
 # Contact
 
